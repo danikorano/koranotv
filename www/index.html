@@ -1,97 +1,521 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <!--
-        Customize this policy to fit your own app's needs. For more guidance, see:
-            https://github.com/apache/cordova-plugin-whitelist/blob/master/README.md#content-security-policy
-        Some notes:
-            * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
-            * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
-            * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
-                * Enable inline JS: add 'unsafe-inline' to default-src
-        -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">
-
-    <!-- Required meta tags-->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <meta name="format-detection" content="telephone=no">
-    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <link rel="stylesheet" href="lib/font-awesome-4.5.0/css/font-awesome.min.css" />  
+    <title>Hello World</title>
+  </head>
+  <body class="theme-red layout-dark">
 
-    <!-- Your app title -->
-    <title>My App</title>
-
-    <!-- This template defaults to the iOS CSS theme. To support both iOS and material design themes, see the Framework7 Tutorial at the link below:
-        http://www.idangero.us/framework7/tutorials/maintain-both-ios-and-material-themes-in-single-app.html
-     -->
-
-    <link rel="stylesheet" href="lib/framework7/css/framework7.ios.min.css">
-    <link rel="stylesheet" href="lib/framework7/css/framework7.ios.colors.min.css">
-
-    <link rel="stylesheet" href="css/styles.css">
-</head>
-
-<body>
-    <!-- Status bar overlay for full screen mode (PhoneGap) -->
-    <div class="statusbar-overlay"></div>
-
-    <!-- Panels overlay-->
-    <div class="panel-overlay"></div>
-    <!-- Left panel with reveal effect-->
-    <div class="panel panel-left panel-reveal">
-        <div class="content-block">
-            <p>Left panel content goes here</p>
-        </div>
+    <!--panel-overlay forma parte del menú, es la parte oscura que queda debajo-->
+    <div id="panel-overlay" class="panel-overlay"></div>
+    <!--Este es el menú-->
+    <div id="sidebar-left" class="panel panel-left panel-cover layout-dark">
+      <div style="background-image:url('img/3.jpg'); height: 20vh;" valign="bottom" class="card-header"><div><img src="img/user.jpg" class="color-red" width="34" height="34" style="border-radius: 25px; border: 2px solid;"><b style="margin-left: 10px">Usuario</b></div></div>
+      <p>Este es mi menú lateral</p>
+      <p><a href="contacto.html">Contacto</a></p>
+      <div class="list-block">
+        <ul>
+          <a href="#" class="home-link item-content list-panel-all close-panel item-link">
+            <div class="item-media"><i class="fa fa-home"></i></div>
+            <div class="item-inner">
+              <div class="item-title">Home</div>
+            </div>
+          </a>
+          <li class="item-divider">Titulo</li>
+          <a href="#" class="search-link item-content list-panel-all close-panel item-link">
+            <div class="item-media"><i class="fa fa-search"></i></div>
+            <div class="item-inner">
+              <div class="item-title">Search</div>
+            </div>
+          </a>
+          <a href="#" class="settings-link item-content list-panel-all close-panel item-link">
+            <div class="item-media"><i class="fa fa-cog"></i></div>
+            <div class="item-inner">
+              <div class="item-title">Settings</div>
+            </div>
+          </a>
+          <a href="#" class="item-content list-panel-all close-panel item-link logout-button">
+            <div class="item-inner">
+              <div class="item-title">Salir</div>
+            </div>
+          </a>
+        </ul>
+      </div>
     </div>
-
-    <!-- Views -->
+    <!--Creamos el contenedor de vistas-->
+  <!-- Views -->
     <div class="views">
-        <!-- Your main view, should have "view-main" class -->
-        <div class="view view-main">
-            <!-- Top Navbar-->
-            <div class="navbar">
-                <div class="navbar-inner">
-                    <!-- We need cool sliding animation on title element, so we have additional "sliding" class -->
-                    <div class="center sliding">Awesome App</div>
-                    <div class="right">
-                        <!--
-                          Right link contains only icon - additional "icon-only" class
-                          Additional "open-panel" class tells app to open panel when we click on this link
-                        -->
-                        <a href="#" class="link icon-only open-panel"><i class="icon icon-bars"></i></a>
-                    </div>
-                </div>
+      <!-- Your main view, should have "view-main" class -->
+      <div class="view view-main">
+        <!-- Top Navbar--> <!--Esto es barra superior, menu, logo, etc-->
+        <div class="navbar">
+          <div class="navbar-inner" data-page="index">
+            <div class="left">
+              <!--
+                Left link contains only icon - additional "icon-only" class
+                Additional "open-panel" class tells app to open panel when we click on this link
+              -->
+              <a href="#" class="link icon-only open-panel"><i class="fa fa-bars"></i></a>
             </div>
-            <!-- Pages container, because we use fixed-through navbar and toolbar, it has additional appropriate classes-->
-            <div class="pages navbar-through toolbar-through">
-                <!-- Page, "data-page" contains page name -->
-                <div data-page="index" class="page">
-                    <!-- Scrollable page content -->
-                    <div class="page-content">
-                        <div class="content-block">
-                            <p>Page content goes here</p>
-                            <!-- Link to another page -->
-                            <a href="about.html">About app</a>
+            <!-- We need cool sliding animation on title element, so we have additional "sliding" class -->
+            <div class="center sliding">Mi App con Framework7</div>
+          </div>
+        </div>
+        <!-- Pages container, because we use fixed-through navbar and toolbar, it has additional appropriate classes-->
+        <div class="pages navbar-through toolbar-through">
+          <!-- Page, "data-page" contains page name -->
+          <div data-page="index" class="page">
+            <!-- Scrollable page content -->
+            <div class="page-content">
+                    <div class="content-block-title">
+                    Este es mi contenido de la app, aquí será la primera pantalla que muestre la aplicación
+                  </div>
+
+                    <div class="list-block">
+                      <ul>
+                        <a href="#" class="item-link item-content">
+                          <div class="item-media"><i class="icon icon-f7"></i></div>
+                          <div class="item-inner">
+                            <div class="item-title">Item title</div>
+                            <div class="item-after">Label</div>
+                          </div>
+                        </a>
+                        <a href="#" class="item-link item-content">
+                          <div class="item-media"><i class="icon icon-f7"></i></div>
+                          <div class="item-inner">
+                            <div class="item-title">Item title</div>
+                            <div class="item-after">Label</div>
+                          </div>
+                        </a>
+                        <li class="item-divider">Separator</li>
+                        <li class="swipeout">
+                          <a href="#" id="coches" class="item-link swipeout-content item-content">
+                            <div class="item-media"><i class="fa fa-car color-red"></i></div>
+                            <div class="item-inner">
+                              <div class="item-title">Coches</div>
+                              <div class="item-after"><span class="badge">5</span></div>
+                            </div>
+                          </a>
+                          <div class="swipeout-actions-right">
+                            <a href="#" class="swipeout-delete bg-red">Quitar</a>
+                          </div>
+                        </li>
+                       <!-- .... Más elementos ... -->
+                      </ul>
+                    </div>
+
+                    <div class="list-block">
+                      <div class="list-group">
+                        <ul>
+                          <li class="list-group-title">First group</li>
+                          <li class="item-content">
+                            <div class="item-media"><i class="icon icon-f7"></i></div>
+                            <div class="item-inner">
+                              <div class="item-title">Item title</div>
+                              <div class="item-after">Label</div>
+                            </div>
+                          </li>
+                          <li class="item-content">
+                            <div class="item-media"><i class="icon icon-f7"></i></div>
+                            <div class="item-inner">
+                              <div class="item-title">Item with badge</div>
+                              <div class="item-after"><span class="badge">5</span></div>
+                            </div>
+                          </li>
+                        </ul>
+                      </div>
+
+                      <div class="list-group">
+                        <ul>
+                          <li class="list-group-title">Second group</li>
+                          <li class="item-content">
+                            <div class="item-media"><i class="icon icon-f7"></i></div>
+                            <div class="item-inner">
+                              <div class="item-title">Item title</div>
+                              <div class="item-after">Label</div>
+                            </div>
+                          </li>
+                          <li class="item-content">
+                            <div class="item-media"><i class="icon icon-f7"></i></div>
+                            <div class="item-inner">
+                              <div class="item-title">Item with badge</div>
+                              <div class="item-after"><span class="badge">5</span></div>
+                            </div>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+
+                    <div class="list-block media-list">
+                      <ul>
+                        <li>
+                          <a href="#" class="item-link item-content">
+                            <div class="item-media">
+                              <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x" style="color: blue"></i>
+                                <i class="fa fa-facebook fa-stack-1x fa-inverse" style="margin-left:0"></i>
+                              </span>
+                            </div>
+                            <div class="item-inner">
+                              <div class="item-title-row">
+                                <div class="item-title">Facebook</div>
+                                <div class="item-after">17:14</div>
+                              </div>
+                              <div class="item-subtitle">New messages from John Doe</div>
+                              <div class="item-text">Lorem ipsum dolor sit amet...</div>
+                            </div>
+                          </a>
+                        </li>
+                        <li class="swipeout">
+                          <a href="#" class="item-link swipeout-content item-content">
+                            <div class="item-media">
+                              <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x" style="color: blue"></i>
+                                <i class="fa fa-facebook fa-stack-1x fa-inverse" style="margin-left:0"></i>
+                              </span>
+                            </div>
+                            <div class="item-inner">
+                              <div class="item-title-row">
+                                <div class="item-title">Facebook</div>
+                                <div class="item-after">17:14</div>
+                              </div>
+                              <div class="item-subtitle">New messages from John Doe</div>
+                              <div class="item-text">Lorem ipsum dolor sit amet...</div>
+                            </div>
+                          </a>
+                          <div class="swipeout-actions-right">
+                             <a href="#" class="action1 bg-red">Action 1</a>
+                            <a href="#" class="action2 bg-orange">Action 2</a>
+                          </div>
+                        </li>
+                        <li class="swipeout">
+                          <div class="swipeout-content item-content">
+                            <div class="item-media">
+                              <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x" style="color: blue"></i>
+                                <i class="fa fa-facebook fa-stack-1x fa-inverse" style="margin-left:0"></i>
+                              </span>
+                            </div>
+                            <div class="item-inner">
+                              <div class="item-title-row">
+                                <div class="item-title">Facebook</div>
+                                <div class="item-after">17:14</div>
+                              </div>
+                              <div class="item-subtitle">New messages from John Doe</div>
+                              <div class="item-text">Lorem ipsum dolor sit amet...</div>
+                            </div>
+                          </div>
+                          <div class="swipeout-actions-right">
+                             <a href="#" class="action1 bg-green">Action 1</a>
+                            <a href="#" class="action2 bg-orange">Action 2</a>
+                          </div>
+                        </li>                  
+                      </ul>
+                    </div>
+
+                    <div class="card">
+                      <div class="card-header">Header</div>
+                      <div class="card-content">
+                        <div class="card-content-inner">Card with header and footer. Card header is used to display card titie and footer for some additional information or for custom actions.</div>
+                      </div>
+                      <div class="card-footer">Footer</div>
+                    </div>
+
+                    <div class="card demo-card-header-pic">
+                      <div style="background-image:url('img/3.jpg')" valign="bottom" class="card-header color-white no-border">Journey To Mountains</div>
+                      <div class="card-content">
+                        <div class="card-content-inner">
+                          <p class="color-gray">Posted on January 21, 2015</p>
+                          <p>Quisque eget vestibulum nulla...</p>
                         </div>
+                      </div>
+                      <div class="card-footer">
+                        <a href="#" class="link">Like</a>
+                        <a href="#" class="link">Read more</a>
+                      </div>
                     </div>
+
+                    <div class="card facebook-card">
+                      <div class="card-header no-border">
+                        <div class="facebook-avatar"><img src="img/logo.png" width="34" height="34"></div>
+                        <div class="facebook-name">John Doe</div>
+                        <div class="facebook-date">Monday at 3:47 PM</div>
+                      </div>
+                      <div class="card-content"><img src="img/3.jpg" width="100%"></div>
+                      <div class="card-footer no-border">
+                        <a href="#" class="link">Like</a>
+                        <a href="#" class="link">Comment</a>
+                        <a href="#" class="link">Share</a>
+                      </div>
+                    </div>
+
+                  </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/template7" id="contacts">
+      {{#if @global.ios}}
+        <div class="navbar">
+            <div class="navbar-inner">
+                <div class="left sliding">
+                    <a href="#" class="back link">
+                      <i class="icon icon-back"></i>
+                      <span>Search</span>
+                    </a>
                 </div>
-            </div>
-            <!-- Bottom Toolbar-->
-            <div class="toolbar">
-                <div class="toolbar-inner">
-                    <!-- Toolbar links -->
-                    <a href="#" class="link">Link 1</a>
-                    <a href="#" class="link">Link 2</a>
-                </div>
+                <div class="center sliding">Results</div>
             </div>
         </div>
-    </div>
+      {{/if}}
+
+      <div class="page" data-page="contacts">
+        {{#if @global.material}}
+          <div class="navbar">
+              <div class="navbar-inner">
+                <div class="left">
+                  <a href="#" class="back link"><i class="icon icon-back"></i></a>
+                </div>
+                <div class="center">Results</div>
+              </div>
+          </div>
+        {{/if}}
+
+        <div class="page-content">
+          <div class="content-block-title">{{cars.count}} cars returned</div>
+          <div class="list-block media-list">
+            <ul>
+              {{#each cars.cars}}
+              <li>
+                <a href="#" class="item-link item-content"
+                  data-item="{{@index}}"
+                  data-context="{{cars}}"
+                  data-template="details"
+                >
+                  <div class="item-inner">
+                    <div class="item-title-row">
+                      <div class="item-title">{{this.name}}</div>
+                    </div>
+                  </div>
+                </a>
+              </li>
+              {{/each}}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </script>
+
+    <script type="text/template7" id="favorites">
+      <!-- Dynamic navbar for iOS theme -->
+      {{#if @global.ios}}
+      <div class="navbar">
+        <div class="navbar-inner">
+          <div class="left">
+            <a href="#" class="link icon-only open-panel"><i class="fa fa-bars"></i></a>
+          </div>
+          <div class="center sliding">Favorites</div>
+        </div>
+      </div>
+      {{/if}}
+
+      <div class="page" data-page="favorites">
+          <!-- Fixed navbar for Material theme -->
+          {{#if @global.material}}
+            <div class="navbar">
+              <div class="navbar-inner">
+                <div class="left">
+                  <a href="#" class="link icon-only open-panel"><i class="fa fa-bars"></i></a>
+                </div>
+              <div class="center sliding">Favorites</div>
+            </div>
+          </div>
+          {{/if}}
+
+          <div class="page-content">
+            {{#if tracks}}
+            <div class="content-block-title">Tracks</div>
+            <div class="list-block media-list">
+              <ul>
+                {{#each tracks}}
+                <li>
+                  <a href="#" class="item-link item-content"
+                    data-item="{{@index}}"
+                    data-context=""
+                    data-template="details"
+                  >
+                    <div class="item-media">
+                      <img width="80" src="">
+                    </div>
+                    <div class="item-inner">
+                      <div class="item-title-row">
+                        <div class="item-title"></div>
+                        <div class="item-after"></div>
+                      </div>
+                      <div class="item-subtitle"></div>
+                      <div class="item-text"></div>
+                    </div>
+                  </a>
+                </li>
+                {{/each}}
+              </ul>
+            </div>
+            {{else}}
+            <div class="content-block">
+              <p>You haven't favorited any tracks! Use the search function and add some to favorites.</p>
+            </div>
+            {{/if}}
+          </div>
+      </div>
+    </script>
+
+    <script type="text/template7" id="details">
+      <!-- Dynamic navbar for iOS theme -->
+      {{#if @global.ios}}
+      <div class="navbar">
+        <div class="navbar-inner">
+          <div class="left sliding">
+            <a href="#" class="back link">
+              <i class="icon icon-back"></i>
+                <span>Results</span>
+            </a>
+          </div>
+          <div class="center sliding">Track details</div>
+          <div class="right">
+            <a href="#" class="link star">
+              <i class="fa fa-star-o"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+      {{/if}}
+
+      <div class="page" data-page="details">
+          <!-- Fixed navbar for Material theme -->
+          {{#if @global.material}}
+          <div class="navbar">
+              <div class="navbar-inner">
+                <div class="left">
+                  <a href="#" class="back link"><i class="icon icon-back"></i></a>
+                </div>
+                <div class="center">Track details</div>
+                <div class="right">
+                  <a href="#" class="link star">
+                    <i class="fa fa-star-o"></i>
+                  </a>
+                </div>
+              </div>
+          </div>
+          {{/if}}
+
+          <div class="page-content">
+            <div class="card">
+              <div class="card-header no-border no-padding">
+                <img src="" width="100%" />
+              </div>
+              <div class="card-content">
+                <div class="card-content-inner">
+                  <div class="track-name"></div>
+                  <div class="artists-name">by </div>
+                  <div class="album-title"></div>
+                </div>
+              </div>
+              <div class="card-content">
+                <div class="card-content-inner preview">
+                  <div class="playback-controls">
+                    <a class="play-button play displayed" href="#">
+                      <div class="arrow-right play"></div>
+                    </a>
+                    <a class="pending-button pending" href="#">
+                      <span class="preloader pending"></span>
+                    </a>
+                    <a class="stop-button stop" href="#">
+                      <div class="square stop"></div>
+                    </a>
+                    <div class="duration">
+                      <span data-progress="0" class="progressbar"></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card-footer">
+                <div>Track duration</div>
+                <div></div>
+              </div>
+            </div>
+          </div>
+      </div>
+    </script>
+
+    <script type="text/template7" id="settings">
+      {{#if @global.ios}}
+        <div class="navbar">
+            <div class="navbar-inner">
+                <div class="left sliding">
+                    <a href="#" class="link icon-only open-panel"><i class="fa fa-bars"></i></a>
+                </div>
+                <div class="center sliding">Settings</div>
+            </div>
+        </div>
+      {{/if}}
+
+      <div class="page" data-page="settings">
+        {{#if @global.material}}
+          <div class="navbar">
+              <div class="navbar-inner">
+                <div class="left">
+                  <a href="#" class="link icon-only open-panel"><i class="fa fa-bars"></i></a>
+                </div>
+                <div class="center">Settings</div>
+              </div>
+          </div>
+        {{/if}}
+
+        <div class="page-content">
+          <div class="content-block-title">Theme</div>
+            <div class="list-block media-list">
+              <div class="list-block">
+                <ul>
+                  <li>
+                    <label class="label-checkbox item-content" onclick="whiteThemeClick()">
+                      {{#if @global.ios}}
+                        <input type="checkbox" name="white-theme" value="white-theme" {{checked}}>
+                        <div class="item-media">
+                          <i class="icon icon-form-checkbox"></i>
+                        </div>
+                      {{/if}}
+                      <div class="item-inner">
+                        <div class="item-title">White theme</div>
+                      </div>
+                      {{#if @global.material}}
+                        <input type="checkbox" name="white-theme" value="white-theme" {{checked}}>
+                        <div class="item-media">
+                          <i class="icon icon-form-checkbox"></i>
+                        </div>
+                      {{/if}}
+                    </label>
+                  </li>
+                </ul>
+              </div>
+            </div>      
+          </div>
+        </div>
+      </div>
+    </script>
 
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="lib/framework7/js/framework7.min.js"></script>
+    <script type="text/javascript" src="js/init-styles.js"></script>
     <script type="text/javascript" src="js/my-app.js"></script>
-</body>
-
+    <script>
+      app.initialize();
+    </script>
+  </body>
 </html>
